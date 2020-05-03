@@ -203,3 +203,18 @@ uint8_t CayenneLPP::addGPS(uint8_t channel, float latitude, float longitude, flo
     return cursor;
 }
 
+uint8_t CayenneLPP::addColour(uint8_t channel, uint8_t r, uint8_t g, uint8_t b)
+{
+  // check buffer overflow
+  if ((cursor + LPP_COLOUR_SIZE) > maxsize) {
+    return 0;
+  }
+  buffer[cursor++] = channel;
+  buffer[cursor++] = LPP_COLOUR;
+  buffer[cursor++] = r;
+  buffer[cursor++] = g;
+  buffer[cursor++] = b;
+ 
+
+  return cursor;
+}
